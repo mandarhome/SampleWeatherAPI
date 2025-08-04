@@ -1,0 +1,48 @@
+name: Increment Minor Version on Merge to Main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  increment-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '7.0.x'
+
+      - name: Get current version
+        id: get_version
+        run: |
+          version=$(grep -m 1 '<AssemblyVersion>' MyWeatherAPI/MyWeatherAPI.csproj | sed -E 's/.*>([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)<.*/\1/')
+          echo "Current version: $version"
+          echo "version=$version" >> $GITHUB_OUTPUT
+
+      - name: Increment minor version
+        id: increment_version
+        run: |
+          old_version=${{ steps.get_version.outputs.version }}
+          IFS='.' read -r major minor build revision <<< "$old_version"
+          revision=$((revision + 1))
+          new_version="$major.$minor.$build.$revision"
+          echo "New version: $new_version"
+          sed -i "s/<AssemblyVersion>.*<\/AssemblyVersion>/<AssemblyVersion>$new_version<\/AssemblyVersion>/" MyWeatherAPI/MyWeatherAPI.csproj
+          sed -i "s/<FileVersion>.*<\/FileVersion>/<FileVersion>$new_version<\/FileVersion>/" MyWeatherAPI/MyWeatherAPI.csproj
+          sed -i "s/<InformationalVersion>.*<\/InformationalVersion>/<InformationalVersion>$new_version<\/InformationalVersion>/" MyWeatherAPI/MyWeatherAPI.csproj
+          echo "new_version=$new_version" >> $GITHUB_OUTPUT
+
+      - name: Commit and push version bump
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add MyWeatherAPI/MyWeatherAPI.csproj
+          git commit -m "ci: bump minor version to ${{ steps.increment_version.outputs.new_version }}"
+          git push
