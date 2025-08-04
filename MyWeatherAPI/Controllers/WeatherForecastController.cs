@@ -15,6 +15,8 @@ public class WeatherForecastController : ControllerBase
 
     private readonly ILogger<WeatherForecastController> _logger;
 
+    
+
     public WeatherForecastController(ILogger<WeatherForecastController> logger)
     {
         // does minor version changed?
