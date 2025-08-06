@@ -1,0 +1,26 @@
+name: Semantic Versioning and .csproj Update
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  versioning:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Generate semantic tag
+        uses: mathieudutour/github-tag-action@v6.1
+        id: tagger
+        with:
+          default_bump: patch
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update .csproj version
+        uses: KageKirin/set-csproj-version@v0
+        with:
+          file: SampleWeatherAPI.csproj
+          version: ${{ steps.tagger.outputs.new_tag }}
