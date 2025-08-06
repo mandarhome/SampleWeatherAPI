@@ -5,7 +5,7 @@ env:
   create_annotated_tag: true
 
 on:
-  push:
+  pull_request:
     branches:
       - main
 
