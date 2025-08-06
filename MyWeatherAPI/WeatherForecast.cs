@@ -2,7 +2,6 @@ namespace MyWeatherAPI;
 
 public class WeatherForecast
 {
-    // domain model
     public DateOnly Date { get; set; }
 
     public int TemperatureC { get; set; }
