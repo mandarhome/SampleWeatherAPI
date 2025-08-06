@@ -1,5 +1,9 @@
 name: Semantic Versioning and .csproj Update
 
+env:
+  ACTIONS_STEP_DEBUG: true
+  create_annotated_tag: true
+
 on:
   push:
     branches:
