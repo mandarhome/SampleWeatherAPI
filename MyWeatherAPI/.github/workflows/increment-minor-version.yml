@@ -3,7 +3,7 @@ name: Increment Minor Version on Merge to Main
 on:
   pull_request:
     branches:
-      - main
+      - main2
 
 jobs:
   increment-version:
