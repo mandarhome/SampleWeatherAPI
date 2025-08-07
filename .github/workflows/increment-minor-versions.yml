@@ -39,7 +39,7 @@ jobs:
           sed -i "s/<InformationalVersion>.*<\/InformationalVersion>/<InformationalVersion>$new_version<\/InformationalVersion>/" MyWeatherAPI/MyWeatherAPI.csproj
           echo "new_version=$new_version" >> $GITHUB_OUTPUT
 
-       - name: Commit and push version bump
+      - name: Commit and push version bump
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
@@ -49,4 +49,3 @@ jobs:
           git commit -m "ci: bump minor version to ${{ steps.increment_version.outputs.new_version }}"
           git remote set-url origin https://x-access-token:${GH_PAT}@github.com/${{ github.repository }}
           git push origin HEAD:main
-
