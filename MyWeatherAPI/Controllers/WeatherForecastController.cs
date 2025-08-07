@@ -24,7 +24,6 @@ public class WeatherForecastController : ControllerBase
     [HttpGet(Name = "GetWeatherForecast")]
     public IEnumerable<WeatherForecast> Get()
     {
-        _logger.Log(LogLevel.Information, "This is just test for minor version");
         _logger.Log(LogLevel.Information, "Testing");   
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
         {
