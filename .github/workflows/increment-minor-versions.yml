@@ -22,7 +22,7 @@ jobs:
       - name: Get current version
         id: get_version
         run: |
-          version=$(grep -m 1 '<AssemblyVersion>' SampleWeatherAPI/MyWeatherAPI.csproj | sed -E 's/.*>([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)<.*/\1/')
+          version=$(grep -m 1 '<AssemblyVersion>' MyWeatherAPI/MyWeatherAPI.csproj | sed -E 's/.*>([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)<.*/\1/')
           echo "Current version: $version"
           echo "version=$version" >> $GITHUB_ENV
 
