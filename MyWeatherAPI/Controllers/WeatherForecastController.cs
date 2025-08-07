@@ -7,6 +7,7 @@ namespace MyWeatherAPI.Controllers;
 [Route("[controller]")]
 public class WeatherForecastController : ControllerBase
 {
+    // adding test comment.
     private static readonly string[] Summaries = new[]
     {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
