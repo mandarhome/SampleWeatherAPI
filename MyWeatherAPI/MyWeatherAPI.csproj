@@ -4,10 +4,10 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Version>2.3.0</Version>
-    <AssemblyVersion>...1</AssemblyVersion>
-    <FileVersion>...1</FileVersion>
-    <InformationalVersion>...1</InformationalVersion>
+    <Version>2.3.0.4</Version>
+    <AssemblyVersion>1.1.2.3</AssemblyVersion>
+    <FileVersion>1.2.3.4</FileVersion>
+    <InformationalVersion>1.2.4.8</InformationalVersion>
   </PropertyGroup>
 
   <ItemGroup>
