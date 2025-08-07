@@ -32,8 +32,10 @@ jobs:
           IFS='.' read -r major minor build revision <<< "$version"
           revision=$((revision + 1))
           new_version="$major.$minor.$build.$revision"
+          new_minor_version="$major.$((minor + 1)).$build.$revision"
           echo "New version: $new_version"
-          sed -i "s/<AssemblyVersion>.*<\/AssemblyVersion>/<AssemblyVersion>$new_version<\/AssemblyVersion>/" MyWeatherAPI/MyWeatherAPI.csproj
+          echo "New minor version: $new_minor_version"
+          sed -i "s/<AssemblyVersion>.*<\/AssemblyVersion>/<AssemblyVersion>$new_minor_version<\/AssemblyVersion>/" MyWeatherAPI/MyWeatherAPI.csproj
           sed -i "s/<FileVersion>.*<\/FileVersion>/<FileVersion>$new_version<\/FileVersion>/" MyWeatherAPI/MyWeatherAPI.csproj
           sed -i "s/<InformationalVersion>.*<\/InformationalVersion>/<InformationalVersion>$new_version<\/InformationalVersion>/" MyWeatherAPI/MyWeatherAPI.csproj
           echo "new_version=$new_version" >> $GITHUB_ENV
