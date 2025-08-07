@@ -33,9 +33,9 @@ jobs:
           revision=$((revision + 1))
           new_version="$major.$minor.$build.$revision"
           echo "New version: $new_version"
-          sed -i "s/<AssemblyVersion>.*<\/AssemblyVersion>/<AssemblyVersion>$new_version<\/AssemblyVersion>/" SampleWeatherAPI/SampleWeatherAPI.csproj
-          sed -i "s/<FileVersion>.*<\/FileVersion>/<FileVersion>$new_version<\/FileVersion>/" SampleWeatherAPI/SampleWeatherAPI.csproj
-          sed -i "s/<InformationalVersion>.*<\/InformationalVersion>/<InformationalVersion>$new_version<\/InformationalVersion>/" SampleWeatherAPI/SampleWeatherAPI.csproj
+          sed -i "s/<AssemblyVersion>.*<\/AssemblyVersion>/<AssemblyVersion>$new_version<\/AssemblyVersion>/" SampleWeatherAPI/MyWeatherAPI.csproj
+          sed -i "s/<FileVersion>.*<\/FileVersion>/<FileVersion>$new_version<\/FileVersion>/" SampleWeatherAPI/MyWeatherAPI.csproj
+          sed -i "s/<InformationalVersion>.*<\/InformationalVersion>/<InformationalVersion>$new_version<\/InformationalVersion>/" SampleWeatherAPI/MyWeatherAPI.csproj
           echo "new_version=$new_version" >> $GITHUB_ENV
 
       - name: Commit and push version bump
