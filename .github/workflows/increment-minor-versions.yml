@@ -33,9 +33,9 @@ jobs:
           revision=$((revision + 1))
           new_version="$major.$minor.$build.$revision"
           echo "New version: $new_version"
-          sed -i "s/<AssemblyVersion>.*<\/AssemblyVersion>/<AssemblyVersion>$new_version<\/AssemblyVersion>/" SampleWeatherAPI/MyWeatherAPI.csproj
-          sed -i "s/<FileVersion>.*<\/FileVersion>/<FileVersion>$new_version<\/FileVersion>/" SampleWeatherAPI/MyWeatherAPI.csproj
-          sed -i "s/<InformationalVersion>.*<\/InformationalVersion>/<InformationalVersion>$new_version<\/InformationalVersion>/" SampleWeatherAPI/MyWeatherAPI.csproj
+          sed -i "s/<AssemblyVersion>.*<\/AssemblyVersion>/<AssemblyVersion>$new_version<\/AssemblyVersion>/" SampleWeatherAPI/MyWeatherAPI/MyWeatherAPI.csproj
+          sed -i "s/<FileVersion>.*<\/FileVersion>/<FileVersion>$new_version<\/FileVersion>/" SampleWeatherAPI/MyWeatherAPI/MyWeatherAPI.csproj
+          sed -i "s/<InformationalVersion>.*<\/InformationalVersion>/<InformationalVersion>$new_version<\/InformationalVersion>/" SampleWeatherAPI/MyWeatherAPI/MyWeatherAPI.csproj
           echo "new_version=$new_version" >> $GITHUB_ENV
 
       - name: Commit and push version bump
@@ -44,7 +44,7 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git add SampleWeatherAPI/MyWeatherAPI.csproj
+          git add SampleWeatherAPI/MyWeatherAPI/MyWeatherAPI.csproj
           git commit -m "ci: bump minor version to $new_version"
           git remote set-url origin https://x-access-token:${GH_PAT}@github.com/${{ github.repository }}
           git push origin HEAD:main
