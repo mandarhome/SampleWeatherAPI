@@ -18,8 +18,7 @@ public class WeatherForecastController : ControllerBase
 
     public WeatherForecastController(ILogger<WeatherForecastController> logger)
     {
-        // does minor version changed?
-        _logger = logger;
+            _logger = logger;
     }
 
     [HttpGet(Name = "GetWeatherForecast")]
